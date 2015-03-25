@@ -1,6 +1,14 @@
 <h2>Welcome <%= current_user.email %></h2>
 <ul>
   <% @products.each do |product| %>
-    <li><%= product.name %></li>
+    <li>
+      <span class=prod_name><%= product.name %></span> - only
+      <%= number_to_currency(product.price/100.0) %>
+      <br />
+      <%= product.description %>
+      <br />
+      <%= link_to('Purchase', ) %>
+    </li>
   <% end %>
 </ul>
+<h3><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h3>
