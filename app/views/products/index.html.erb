@@ -1,0 +1,6 @@
+<h2>Welcome <%= current_user.email %></h2>
+<ul>
+  <% @products.each do |product| %>
+    <li><%= product.name %></li>
+  <% end %>
+</ul>
