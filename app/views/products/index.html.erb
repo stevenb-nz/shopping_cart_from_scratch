@@ -1,14 +1,13 @@
 <h2>Welcome <%= current_user.email %></h2>
 <ul>
   <% @products.each do |product| %>
-    <li>
-      <span class=prod_name><%= product.name %></span> - only
-      <%= number_to_currency(product.price/100.0) %>
+    <li class=whole-prod>
+      <span class=prod-name><%= product.name %></span> - only
+      <%= number_to_currency(product.price/100.0) %> -
+      <%= link_to('Purchase', ) %>
       <br />
       <%= product.description %>
-      <br />
-      <%= link_to('Purchase', ) %>
     </li>
   <% end %>
 </ul>
-<h3><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h3>
+<h3><%= link_to('View cart', ) %> / <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h3>
