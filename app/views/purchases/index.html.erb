@@ -1,0 +1,20 @@
+<h2>Cart for <%= current_user.email %></h2>
+<ul>
+  <% if @purchases.empty? %>
+    <li class=whole-prod><span class=prod-name>Your cart is empty.</span></li>
+  <% else %>
+    <% total = 0 %>
+    <% @purchases.each do |purchase| %>
+      <li class=whole-prod>
+        <span class=prod-name><%= purchase.product.name %></span> -
+        <%= number_to_currency(purchase.product.price/100.0) %>
+        <%= button_to "delete", {:controller => "purchases", :action => 'destroy', :id => purchase.id }, :method => :delete %>
+      </li>
+      <% total += purchase.product.price %>
+    <% end %>
+    <li class=whole-prod><span class=prod-name>Total</span> - <%= number_to_currency(total/100.0) %></li>
+    <% @current_order.total = total %>
+    <% @current_order.save %>
+  <% end %>
+</ul>
+<h3><%= link_to('View products', products_path) %> / <%= link_to('Checkout', order_path(@current_order), :method => :put) %> / <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h3>
