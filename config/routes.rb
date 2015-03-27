@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :orders, only: [:update]
+  resources :products, only: [:index]
+  resources :purchases, only: [:index]
+  get '/purchases/new/:id', to: 'purchases#new', as: 'new_purchase'
+  delete '/purchases/:id', to: 'purchases#destroy', as: 'purchase'
   root 'products#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
 end

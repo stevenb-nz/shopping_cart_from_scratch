@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(version: 20150325055155) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "total",      default: 0
     t.boolean  "purchased"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -34,16 +35,14 @@ ActiveRecord::Schema.define(version: 20150325055155) do
   create_table "purchases", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "order_id"
-    t.integer  "total",      default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "purchases", ["order_id"], name: "index_purchases_on_order_id", using: :btree
   add_index "purchases", ["product_id"], name: "index_purchases_on_product_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                   default: "", null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
