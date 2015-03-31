@@ -1,6 +1,10 @@
 <h2>Cart for <%= current_user.email %></h2>
 <ul>
   <% if @purchases.empty? %>
+    <% flash[:last_order] ||= 0 %>
+    <% if flash[:last_order] > 0 %>
+      <li class=whole-prod>You just spent <span class=prod-name><%= number_to_currency(flash[:last_order]/100.0) %></span></li>
+    <% end %>
     <li class=whole-prod><span class=prod-name>Your cart is empty.</span></li>
   <% else %>
     <% total = 0 %>

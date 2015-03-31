@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
     if @order.total > 0
       @order.purchased = true
       @order.save
+      flash[:last_order] = @order.total
     end
     redirect_to purchases_path
   end
